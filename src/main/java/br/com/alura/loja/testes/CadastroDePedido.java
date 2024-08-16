@@ -6,6 +6,8 @@ import br.com.alura.loja.dao.PedidoDao;
 import br.com.alura.loja.dao.ProdutoDao;
 import br.com.alura.loja.modelo.*;
 import br.com.alura.loja.util.JPAUtil;
+import java.util.List;
+
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
@@ -32,18 +34,32 @@ public class CadastroDePedido {
         pedidoDao.cadastrar(pedido);
 
         em.getTransaction().commit();
-        em.close();
+
+        BigDecimal valorTotal = pedidoDao.valorTotalVendido();
+        System.out.println("O valor total dos pedidos é :" + valorTotal);
+
+        List<Object[]> relatorio = pedidoDao.relatorioDePedidos();
+
+        for (Object[] obj: relatorio) {
+            System.out.println(obj[0]);
+            System.out.println(obj[1]);
+            System.out.println(obj[2]);
+        }
+        
     }
 
     private static void popularBanco() {
         Categoria celulares = new Categoria("CELULARES");
         Produto celular = new Produto("Xiaomi Redmi", "Muito legal", new BigDecimal("800"), celulares );
         Cliente cliente = new Cliente("Danilo","123456");
+        Pedido pedido = new Pedido(cliente);
+
 
         EntityManager em = JPAUtil.getEntityManager();
         ProdutoDao produtoDao = new ProdutoDao(em);
         CategoriaDao categoriaDao = new CategoriaDao(em);
         ClienteDao clienteDao = new ClienteDao(em);
+        PedidoDao pedidoDao = new PedidoDao(em);
 
         em.getTransaction().begin();
 
@@ -52,6 +68,5 @@ public class CadastroDePedido {
         clienteDao.cadastrar(cliente);
 
         em.getTransaction().commit();
-        em.close();
     }
 }
