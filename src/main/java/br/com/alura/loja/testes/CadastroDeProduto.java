@@ -14,7 +14,7 @@ import br.com.alura.loja.util.JPAUtil;
 public class CadastroDeProduto {
 	
 	public static void main(String[] args) {
-<<<<<<< HEAD
+
 		cadastrarProduto();
 		EntityManager em = JPAUtil.getEntityManager();
 		ProdutoDao produtoDao = new ProdutoDao(em);
@@ -46,7 +46,6 @@ public class CadastroDeProduto {
 		categoriaDao.cadastrar(celulares);
 		produtoDao.cadastrar(celular);
 
-=======
 		popularBanco();
 		EntityManager em = JPAUtil.getEntityManager();
 		ProdutoDao produtoDao = new ProdutoDao(em);
@@ -73,8 +72,6 @@ public class CadastroDeProduto {
 		
 		categoriaDao.cadastrar(celulares);
 		produtoDao.cadastrar(celular);
-		
->>>>>>> 759d5d522b91f9fd880b6ec2e4bbbadf2bbc053b
 		em.getTransaction().commit();
 		em.close();
 	}
