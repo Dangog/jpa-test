@@ -2,11 +2,16 @@ package br.com.alura.loja.modelo;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+<<<<<<< HEAD
+=======
+import org.hibernate.annotations.NamedQuery;
+>>>>>>> 759d5d522b91f9fd880b6ec2e4bbbadf2bbc053b
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "produtos")
+@NamedQuery(name = "Produto.produtosPorCategoria", query = "SELECT p FROM Produto p WHERE p.categoria.nome = :nome")
 public class Produto {
 
 	@Id
@@ -17,11 +22,20 @@ public class Produto {
 	private BigDecimal preco;
 	private LocalDate dataCadastro = LocalDate.now();
 
+<<<<<<< HEAD
 	@ManyToOne
 	private Categoria categoria;
 
 	public Produto(){}
 
+=======
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Categoria categoria;
+	
+	public Produto() {
+	}
+	
+>>>>>>> 759d5d522b91f9fd880b6ec2e4bbbadf2bbc053b
 	public Produto(String nome, String descricao, BigDecimal preco, Categoria categoria) {
 		this.nome = nome;
 		this.descricao = descricao;
@@ -61,6 +75,17 @@ public class Produto {
 		this.preco = preco;
 	}
 
+<<<<<<< HEAD
+=======
+	public LocalDate getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(LocalDate dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
+>>>>>>> 759d5d522b91f9fd880b6ec2e4bbbadf2bbc053b
 	public Categoria getCategoria() {
 		return categoria;
 	}
@@ -69,6 +94,7 @@ public class Produto {
 		this.categoria = categoria;
 	}
 
+<<<<<<< HEAD
 	public LocalDate getDataCadastro() {
 		return dataCadastro;
 	}
@@ -76,4 +102,6 @@ public class Produto {
 	public void setDataCadastro(LocalDate dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
+=======
+>>>>>>> 759d5d522b91f9fd880b6ec2e4bbbadf2bbc053b
 }
